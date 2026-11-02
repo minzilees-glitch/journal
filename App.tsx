@@ -1,20 +1,47 @@
+import { NotoSerifKR_500Medium, useFonts } from '@expo-google-fonts/noto-serif-kr';
+import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { useEffect } from 'react';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+import { JournalScreen } from './src/JournalScreen';
+import { NotesProvider, useNotes } from './src/NotesContext';
+import { PaperScreen } from './src/PaperScreen';
+import { WriteScreen } from './src/WriteScreen';
+
+SplashScreen.preventAutoHideAsync();
+
+function Root() {
+  const { ready, screen } = useNotes();
+
+  useEffect(() => {
+    if (ready) {
+      void SplashScreen.hideAsync();
+    }
+  }, [ready]);
+
+  if (!ready) {
+    return <PaperScreen />;
+  }
+
+  return screen === 'journal' ? <JournalScreen /> : <WriteScreen />;
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default function App() {
+  const [fontsLoaded] = useFonts({
+    NotoSerifKR_500Medium,
+  });
+
+  if (!fontsLoaded) {
+    return <PaperScreen />;
+  }
+
+  return (
+    <SafeAreaProvider>
+      <NotesProvider>
+        <StatusBar style="dark" />
+        <Root />
+      </NotesProvider>
+    </SafeAreaProvider>
+  );
+}

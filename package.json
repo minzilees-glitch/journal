@@ -3,10 +3,23 @@
   "version": "1.0.0",
   "main": "index.ts",
   "dependencies": {
+    "@expo-google-fonts/noto-serif-kr": "^0.4.3",
+    "@expo/metro-runtime": "~57.0.15",
+    "@react-native-async-storage/async-storage": "2.2.0",
     "expo": "~57.0.23",
+    "expo-file-system": "~57.0.7",
+    "expo-font": "~57.0.4",
+    "expo-image": "~57.0.5",
+    "expo-image-picker": "~57.0.18",
+    "expo-speech-recognition": "^57.1.0",
+    "expo-splash-screen": "~57.0.9",
     "expo-status-bar": "~57.0.1",
     "react": "19.2.3",
-    "react-native": "0.86.3"
+    "react-dom": "19.2.3",
+    "react-native": "0.86.3",
+    "react-native-safe-area-context": "~5.7.0",
+    "react-native-svg": "15.15.4",
+    "react-native-web": "^0.21.2"
   },
   "devDependencies": {
     "@types/react": "~19.2.2",
@@ -16,7 +29,9 @@
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "web": "expo start --web"
+    "web": "expo start --web",
+    "export:web": "expo export -p web",
+    "deploy": "expo export -p web && npx vercel --prod --yes"
   },
   "private": true
 }
