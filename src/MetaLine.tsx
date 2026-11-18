@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import { Modal, Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { formatKoreanDate, fromDateKey, toDateKey } from './dates';
-import { colors } from './theme';
+import { colors, phone } from './theme';
 import type { Category, TimePeriod } from './types';
 import { CATEGORIES, TIME_PERIODS } from './types';
 
@@ -257,6 +257,9 @@ const styles = StyleSheet.create({
     backgroundColor: colors.paper,
     paddingHorizontal: 20,
     paddingVertical: 24,
+    width: '100%',
+    maxWidth: phone.width,
+    alignSelf: 'center',
   },
   optionSheet: {
     backgroundColor: colors.paper,
@@ -264,6 +267,7 @@ const styles = StyleSheet.create({
     paddingVertical: 16,
     alignSelf: 'center',
     minWidth: 120,
+    maxWidth: phone.width,
   },
   monthRow: {
     flexDirection: 'row',

@@ -31,7 +31,7 @@
     },
     "web": {
       "favicon": "./assets/favicon.png",
-      "backgroundColor": "#fbfaee",
+      "backgroundColor": "#8b877c",
       "output": "single",
       "bundler": "metro"
     },

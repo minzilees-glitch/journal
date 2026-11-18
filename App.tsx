@@ -2,20 +2,15 @@ import { NotoSerifKR_500Medium, useFonts } from '@expo-google-fonts/noto-serif-k
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
-import { Platform } from 'react-native';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { JournalScreen } from './src/JournalScreen';
 import { NotesProvider, useNotes } from './src/NotesContext';
 import { PaperScreen } from './src/PaperScreen';
+import { PhoneShell } from './src/PhoneShell';
 import { WriteScreen } from './src/WriteScreen';
+import './src/web.css';
 
 SplashScreen.preventAutoHideAsync();
-
-const webMetrics = {
-  frame: { x: 0, y: 0, width: 0, height: 0 },
-  insets: { top: 0, left: 0, right: 0, bottom: 0 },
-};
 
 function Root() {
   const { ready, screen } = useNotes();
@@ -39,7 +34,7 @@ export default function App() {
   });
 
   return (
-    <SafeAreaProvider initialMetrics={Platform.OS === 'web' ? webMetrics : undefined}>
+    <PhoneShell>
       <StatusBar style="dark" />
       {fontsLoaded ? (
         <NotesProvider>
@@ -48,6 +43,6 @@ export default function App() {
       ) : (
         <PaperScreen />
       )}
-    </SafeAreaProvider>
+    </PhoneShell>
   );
 }

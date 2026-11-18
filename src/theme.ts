@@ -1,8 +1,15 @@
 export const colors = {
   paper: '#fbfaee',
+  desk: '#8b877c',
   ink: '#44443f',
   inkSoft: 'rgba(68, 68, 63, 0.45)',
   line: 'rgba(68, 68, 63, 0.12)',
+} as const;
+
+export const phone = {
+  width: 390,
+  height: 844,
+  breakpoint: 480,
 } as const;
 
 export const space = {
